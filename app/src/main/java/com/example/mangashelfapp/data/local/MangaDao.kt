@@ -11,6 +11,9 @@ interface MangaDao {
   @Query("SELECT * FROM manga_table")
   fun getAllMangas(): Flow<List<MangaEntity>>
 
+  @Query("SELECT * FROM manga_table")
+  suspend fun getAllMangasOnce(): List<MangaEntity>
+
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   suspend fun insertAll(mangas: List<MangaEntity>)
 }

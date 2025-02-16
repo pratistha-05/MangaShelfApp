@@ -3,6 +3,7 @@ package com.example.mangashelfapp.data.local
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.mangashelfapp.data.model.Manga
+import java.util.Calendar
 
 @Entity(tableName = "manga_table")
 data class MangaEntity(
@@ -31,4 +32,3 @@ fun Manga.toEntity() = MangaEntity(
   popularity = popularity,
   year = year
 )
-

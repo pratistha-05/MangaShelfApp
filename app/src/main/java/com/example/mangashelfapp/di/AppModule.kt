@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.example.mangashelfapp.data.local.MangaDao
 import com.example.mangashelfapp.data.local.MangaDatabase
 import com.example.mangashelfapp.data.source.ApiService
-import com.example.mangashelfapp.domain.usecases.MangaRepository
+import com.example.mangashelfapp.data.repository.MangaRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
