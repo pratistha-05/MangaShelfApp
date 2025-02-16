@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
     setContent {
       MangaShelfAppTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-          MangaListScreen()
+          MangaListScreen(innerPadding)
         }
       }
     }

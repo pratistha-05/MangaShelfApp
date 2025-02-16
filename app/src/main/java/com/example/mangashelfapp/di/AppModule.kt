@@ -6,6 +6,7 @@ import com.example.mangashelfapp.data.local.MangaDao
 import com.example.mangashelfapp.data.local.MangaDatabase
 import com.example.mangashelfapp.data.source.ApiService
 import com.example.mangashelfapp.data.repository.MangaRepository
+import com.example.mangashelfapp.domain.SortMangasUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,5 +37,11 @@ object AppModule {
   @Singleton
   fun provideMangaRepository(apiService: ApiService, dao: MangaDao): MangaRepository {
     return MangaRepository(apiService, dao)
+  }
+
+  @Provides
+  @Singleton
+  fun provideSortMangasUseCase(): SortMangasUseCase {
+    return SortMangasUseCase()
   }
 }
