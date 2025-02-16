@@ -1,14 +1,8 @@
 package com.example.mangashelfapp.ui.screen
 
-import android.util.Log
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ScrollableTabRow
@@ -19,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -84,6 +77,14 @@ fun MangaGroupedByYear(mangas: List<Manga>) {
         Tab(
           selected = selectedIndex == index,
           onClick = {
+            selectedIndex = index
+            val targetIndex = mangas.indexOfFirst { it.year == year }
+
+            if (targetIndex != -1) {
+              coroutineScope.launch {
+                listState.animateScrollToItem(targetIndex)
+              }
+            }
           },
           text = { Text(year.toString()) }
         )
