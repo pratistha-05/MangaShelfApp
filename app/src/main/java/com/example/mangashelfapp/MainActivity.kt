@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.example.mangashelfapp.ui.screen.MangaListScreen
+import com.example.mangashelfapp.ui.MangaAppNavHost
 import com.example.mangashelfapp.ui.theme.MangaShelfAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
     setContent {
       MangaShelfAppTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-          MangaListScreen(innerPadding)
+          MangaAppNavHost(innerPadding)
         }
       }
     }

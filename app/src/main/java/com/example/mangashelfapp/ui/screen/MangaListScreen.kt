@@ -14,14 +14,11 @@ import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Sort
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -30,8 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.mangashelfapp.data.model.Manga
-import com.example.mangashelfapp.ui.UiState
+import com.example.mangashelfapp.ui.components.UiState
 import com.example.mangashelfapp.ui.components.BottomSheetLayout
 import com.example.mangashelfapp.ui.components.MangaItem
 import com.example.mangashelfapp.ui.viewmodel.MangaViewModel
@@ -39,7 +37,9 @@ import com.example.mangashelfapp.util.SortOption
 import kotlinx.coroutines.launch
 
 @Composable
-fun MangaListScreen(innerPadding: PaddingValues,viewModel: MangaViewModel = hiltViewModel()) {
+fun MangaListScreen(innerPadding: PaddingValues,
+  navController: NavController,  viewModel: MangaViewModel = hiltViewModel(),
+) {
   val uiState by viewModel.uiState.collectAsState()
 
   when (uiState) {
@@ -49,7 +49,7 @@ fun MangaListScreen(innerPadding: PaddingValues,viewModel: MangaViewModel = hilt
 
     is UiState.Success -> {
       val mangas = (uiState as UiState.Success).mangas
-      MangaGroupedByYear(innerPadding,mangas = mangas,viewModel)
+      MangaGroupedByYear(innerPadding,mangas = mangas,viewModel,navController)
     }
 
     is UiState.Error -> {
@@ -64,7 +64,8 @@ fun MangaListScreen(innerPadding: PaddingValues,viewModel: MangaViewModel = hilt
 fun MangaGroupedByYear(
   innerPadding: PaddingValues,
   mangas: List<Manga>,
-  viewModel: MangaViewModel
+  viewModel: MangaViewModel,
+  navController: NavController,
 ) {
   val groupedMangas = mangas.groupBy { it.year }
   val years = groupedMangas.keys.sorted()
@@ -161,12 +162,16 @@ fun MangaGroupedByYear(
             )
           }
           items(groupedMangas[year] ?: emptyList()) { manga ->
-            MangaItem(manga = manga)
+            MangaItem(manga = manga, onClick ={
+              navController.navigate("manga_detail/${manga.id}")
+            })
           }
         }
       } else {
         items(sortedMangas) { manga ->
-          MangaItem(manga = manga)
+          MangaItem(manga = manga, onClick={
+            navController.navigate("manga_detail/${manga.id}")
+          })
         }
       }
     }

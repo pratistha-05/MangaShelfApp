@@ -1,4 +1,4 @@
-package com.example.mangashelfapp.ui
+package com.example.mangashelfapp.ui.components
 
 import com.example.mangashelfapp.data.model.Manga
 

@@ -1,6 +1,7 @@
 package com.example.mangashelfapp.ui.components
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,8 +26,7 @@ import coil.compose.AsyncImage
 import com.example.mangashelfapp.data.model.Manga
 
 @Composable
-fun
-    MangaItem(manga: Manga) {
+fun MangaItem(manga: Manga, onClick: (Manga) -> Unit) {
   Card(
     modifier = Modifier
       .fillMaxWidth()
@@ -35,7 +35,10 @@ fun
         width = 1.dp,
         color = MaterialTheme.colorScheme.primary,
         shape = RoundedCornerShape(12.dp)
-      ),
+      )
+      .clickable {
+        onClick(manga)
+                 },
     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     shape = RoundedCornerShape(12.dp),
     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)

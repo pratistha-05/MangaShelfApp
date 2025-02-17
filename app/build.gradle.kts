@@ -71,5 +71,6 @@ dependencies {
   implementation(libs.androidx.ui.tooling.preview)
   implementation(libs.androidx.material3)
   implementation("androidx.compose.material:material-icons-extended:1.7.8")
+  implementation ("androidx.navigation:navigation-compose:2.7.5")
 
 }
