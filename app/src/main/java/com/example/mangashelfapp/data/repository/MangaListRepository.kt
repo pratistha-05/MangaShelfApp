@@ -1,6 +1,8 @@
 package com.example.mangashelfapp.data.repository
 
+import androidx.compose.runtime.*
 import com.example.mangashelfapp.data.local.MangaDao
+import com.example.mangashelfapp.data.local.MangaEntity
 import com.example.mangashelfapp.data.local.toEntity
 import com.example.mangashelfapp.data.local.toManga
 import com.example.mangashelfapp.data.model.Manga
@@ -14,6 +16,7 @@ class MangaRepository @Inject constructor(
   private val apiService: ApiService,
   private val mangaDao: MangaDao
 ) {
+
 
   val mangas: Flow<List<Manga>> = mangaDao.getAllMangas()
     .map { entities -> entities.map { it.toManga() } }
@@ -35,5 +38,10 @@ class MangaRepository @Inject constructor(
       }
     }
   }
+
+  suspend fun toggleFavorite(manga: MangaEntity) {
+    mangaDao.updateManga(manga.copy(isFavorite = !manga.isFavorite))
+  }
+
 
 }

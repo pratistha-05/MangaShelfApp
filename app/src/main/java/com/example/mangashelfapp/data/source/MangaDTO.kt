@@ -9,7 +9,8 @@ data class MangaDto(
   val score: Double,
   val popularity: Int,
   val title: String,
-  val publishedChapterDate: Long
+  val publishedChapterDate: Long,
+  val isFavourite:Boolean
 )
 
 fun MangaDto.toManga() = Manga(
@@ -18,5 +19,7 @@ fun MangaDto.toManga() = Manga(
   imageUrl = image,
   score = score,
   popularity = popularity,
-  year = publishedChapterDate.toYear()
+  year = publishedChapterDate.toYear(),
+  isFavourite = isFavourite
+
 )

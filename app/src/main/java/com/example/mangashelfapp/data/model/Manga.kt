@@ -7,5 +7,6 @@ data class Manga(
   val imageUrl: String?,
   val score: Double,
   val popularity: Int,
-  val year: Int
+  val year: Int,
+  val isFavourite:Boolean
 )

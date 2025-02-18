@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mangashelfapp.data.model.Manga
 import com.example.mangashelfapp.data.repository.MangaRepository
 import com.example.mangashelfapp.domain.SortMangasUseCase
-import com.example.mangashelfapp.ui.UiState
+import com.example.mangashelfapp.ui.components.UiState
 import com.example.mangashelfapp.util.SortOption
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

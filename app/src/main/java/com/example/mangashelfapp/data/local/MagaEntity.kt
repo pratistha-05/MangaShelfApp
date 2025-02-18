@@ -12,7 +12,8 @@ data class MangaEntity(
   val imageUrl: String?,
   val score: Double,
   val popularity: Int,
-  val year: Int
+  val year: Int,
+  val isFavorite: Boolean
 )
 
 fun MangaEntity.toManga() = Manga(
@@ -21,14 +22,18 @@ fun MangaEntity.toManga() = Manga(
   imageUrl = imageUrl,
   score = score,
   popularity = popularity,
-  year = year
+  year = year,
+  isFavourite = isFavorite
 )
 
-fun Manga.toEntity() = MangaEntity(
-  id = id,
-  title = title,
-  imageUrl = imageUrl,
-  score = score,
-  popularity = popularity,
-  year = year
-)
+fun Manga.toEntity(): MangaEntity {
+  return MangaEntity(
+    id = this.id,
+    title = this.title,
+    imageUrl = this.imageUrl,
+    score = this.score,
+    popularity = this.popularity,
+    year = this.year,
+    isFavorite = this.isFavourite,
+  )
+}

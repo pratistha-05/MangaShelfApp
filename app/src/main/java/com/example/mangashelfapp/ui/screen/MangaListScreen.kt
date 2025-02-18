@@ -107,12 +107,13 @@ fun MangaGroupedByYear(
   }
 
   // Auto switch tab when scrolling
-  LaunchedEffect(visibleYear) {
-    val visibleYearIndex = years.indexOf(visibleYear)
-    if (visibleYearIndex != -1 && selectedIndex != visibleYearIndex) {
-      selectedIndex = visibleYearIndex
+
+  LaunchedEffect(years) {
+    if (years.isNotEmpty() && selectedIndex >= years.size) {
+      selectedIndex = 0
     }
   }
+
 
   Column(
     modifier = Modifier
@@ -127,7 +128,7 @@ fun MangaGroupedByYear(
       )
     }
 
-    if (sortOption == SortOption.NONE) {
+    if (sortOption == SortOption.NONE && years.isNotEmpty()) {
       ScrollableTabRow(
         selectedTabIndex = selectedIndex,
         edgePadding = 8.dp
