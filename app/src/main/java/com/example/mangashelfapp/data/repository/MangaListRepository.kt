@@ -40,7 +40,7 @@ class MangaRepository @Inject constructor(
   }
 
   suspend fun toggleFavorite(manga: MangaEntity) {
-    mangaDao.updateManga(manga.copy(isFavorite = !manga.isFavorite))
+    mangaDao.updateManga(manga)
   }
 
 

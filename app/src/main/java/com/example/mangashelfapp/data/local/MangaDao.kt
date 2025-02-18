@@ -21,6 +21,5 @@ interface MangaDao {
   @Update
   suspend fun updateManga(manga: MangaEntity)
 
-  @Query("SELECT * FROM manga_table WHERE isFavorite = 1")
-  fun getFavoriteMangas(): Flow<List<MangaEntity>>
+
 }

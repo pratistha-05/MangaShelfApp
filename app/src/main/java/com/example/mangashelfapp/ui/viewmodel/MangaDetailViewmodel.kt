@@ -31,13 +31,14 @@ class MangaDetailViewModel @Inject constructor(
 
   fun toggleFavorite() {
     _mangaState.value?.let { manga ->
-      val updatedManga = manga.copy(isFavourite = !manga.isFavourite)
-      _mangaState.value = updatedManga
       viewModelScope.launch {
-        repository.toggleFavorite(updatedManga.toEntity())
+        repository.toggleFavorite(
+          manga.toEntity().copy(isFavorite = !manga.isFavourite)
+        )
       }
     }
   }
+
 
 }
 
